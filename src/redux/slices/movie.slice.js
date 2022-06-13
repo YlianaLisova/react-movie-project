@@ -7,15 +7,22 @@ const initialState = {
 
 const getAllMovies = createAsyncThunk(
     'movieSlice/getAllMovies',
-    async ({page}) => {
-        const {data} = await movieService.getAllMovies(page);
+    async () => {
+        const {data} = await movieService.getAllMovies();
         return data
     }
 )
 let movieSlice = createSlice({
     name:'movieSlice',
     initialState,
-    reducers:{}
+    reducers:{},
+    extraReducers: (builder)=>{
+        builder
+            .addCase(getAllMovies.fulfilled,(state, action)=>{
+                state.movies = action.payload
+            })
+    }
+
 });
 
 const {reducer: movieReducer} = movieSlice;
