@@ -1,10 +1,11 @@
 import React from 'react';
 import {Outlet} from "react-router-dom";
-import {MoviesList} from "../../components";
+import {Genres, MoviesList} from "../../components";
 
 export const MoviesPage = () => {
     return (
-        <div>
+        <div style={{display:"flex"}}>
+            <Genres/>
             <MoviesList/>
             <Outlet/>
         </div>
