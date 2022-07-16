@@ -2,13 +2,13 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {movieService} from "../../services";
 
 const initialState = {
-    movies:[]
+    movies:[],
 }
 
 const getAllMovies = createAsyncThunk(
     'movieSlice/getAllMovies',
-    async () => {
-        const {data} = await movieService.getAllMovies();
+    async ({page}) => {
+        const {data} = await movieService.getAllMovies(page);
         return data
     }
 )
@@ -19,7 +19,7 @@ let movieSlice = createSlice({
     extraReducers: (builder)=>{
         builder
             .addCase(getAllMovies.fulfilled,(state, action)=>{
-                state.movies = action.payload
+                state.movies = action.payload;
             })
     }
 

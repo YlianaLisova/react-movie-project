@@ -5,6 +5,10 @@ import css from "./Header.module.css"
 import {UserAuth} from "../UserAuth/UserAuth";
 
 export const Header = () => {
+    function toggleDarkTheme() {
+        return document.body.classList.toggle('dark-theme');
+    }
+
     return (
         <div className={css.header}>
             <div className={css.leftBar}>
@@ -14,6 +18,12 @@ export const Header = () => {
                 <NavLink className={css.link} to={'movies'}>Movies</NavLink>
             </div>
             <div className={css.user}>
+                <div>
+                    <label className={css.switch}>
+                        <input onClick={toggleDarkTheme} type="checkbox"/>
+                        <span className={`${css.slider} ${css.round}`}></span>
+                    </label>
+                </div>
                 <UserAuth/>
             </div>
         </div>
