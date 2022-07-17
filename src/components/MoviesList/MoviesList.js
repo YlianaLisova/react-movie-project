@@ -7,15 +7,18 @@ import css from './allMovies.module.css'
 import {useSearchParams} from "react-router-dom";
 
 export const MoviesList = () => {
-    const {movies:{results}} = useSelector(state => state.movies)
+    const {movies: {results}} = useSelector(state => state.movies)
     let dispatch = useDispatch();
     let [query, setQuery] = useSearchParams({page: '1'});
     console.log(query);
 
     const page = query.get('page');
+
+
     useEffect(() => {
         dispatch(movieActions.getAllMovies({page}))
-    }, [page,dispatch])
+    }, [page, dispatch]);
+
 
     const prevPage = () => {
         const prev = +page - 1;
